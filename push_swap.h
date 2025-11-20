@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:02:26 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 23:12:18 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/20 23:49:33 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ long	count_param(char **argv);
 long	*create_valtab(char **argv);
 long	count_param(char **argv);
 int		is_valid_number(char *s);
-int		check_custom(char **argv, int (*test)(char *));
+/* int		check_custom(char **argv, int (*test)(char *)); */
 int		check_arg(char **argv);
+int		has_duplicate(char **argv);
 
 t_node	*pop_back(t_node **stack);
 t_node	*pop_front(t_node **stack);

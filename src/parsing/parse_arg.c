@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 22:03:58 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 23:17:28 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/20 23:50:00 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ void	parse_args(char **argv)
 		return ;
 	len = count_param(argv);
 	tab = create_valtab(argv);
+	if (!tab)
+		return ;
 	i = 0;
 	while (i < len)
 	{
-		ft_putunbr_fd(tab[i], 1);
+		ft_putnbr_fd(tab[i], 1);
 		ft_putchar_fd(' ', 1);
 		i++;
 	}
+	free(tab);
 }
 
 /**
@@ -36,6 +39,7 @@ void	parse_args(char **argv)
  *
  * @return 
  */
+
 long	*create_valtab(char **argv)
 {
 	long	i;
@@ -58,45 +62,44 @@ long	*create_valtab(char **argv)
 	return (tab);
 }
 
-int check_custom(char **argv, int (*test)(char *))
-{
-    int i = 1;
-
-    while (argv[i])
-    {
-        if (!test(argv[i]))
-            return (0);
-        i++;
-    }
-    return (1);
-}
-
-int is_valid_number(char *s)
-{
-    int i;
-
-    i = 0;
-    if (s[i] == '+' || s[i] == '-')
-        i++;
-    if (!s[i])
-        return (0);
-    if (s[i] == '+' || s[i] == '-')
-        return (0);
-    while (s[i])
-    {
-        if (s[i] < '0' || s[i] > '9')
-            return (0);
-        i++;
-    }
-    return (1);
-}
-
 int	check_arg(char **argv)
 {
-	if (!check_custom(argv, is_valid_number))
+	int		i;
+	long	v;
+
+	i = 1;
+	while (argv[i])
 	{
-		ft_printf("Error/n");
+		if (!is_valid_number(argv[i]))
+		{
+			ft_printf("Error\n : Invalid number '%s'\n", argv[i]);
+			return (0);
+		}
+		v = ft_atol(argv[i]);
+		if (v < INT_MIN || v > INT_MAX)
+		{
+			ft_printf("Error\n : Number out TO BIG found '%s'\n", argv[i]);
+			return (0);
+		}
+		i++;
+	}
+	if (has_duplicate(argv))
+	{
+		ft_printf("Error\n : Duplicate numbers found\n");
 		return (0);
 	}
 	return (1);
 }
+
+/* int check_custom(char **argv, int (*test)(char *)) */
+/* { */
+/*     int i = 1; */
+
+/*     while (argv[i]) */
+/*     { */
+/*         if (!test(argv[i])) */
+/*             return (0); */
+/*         i++; */
+/*     } */
+/*     return (1); */
+/* } */

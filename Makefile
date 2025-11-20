@@ -6,15 +6,16 @@
 #    By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 22:02:03 by zcadinot          #+#    #+#              #
-#    Updated: 2025/11/20 22:32:36 by zcadinot         ###   ########.fr        #
+#    Updated: 2025/11/20 23:57:26 by zcadinot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        = push_swap
 
 SRC_DIR     = src
+OBJ_DIR     = obj
 INC_DIR     = includes
-LIB_DIR   	= library
+LIB_DIR     = library
 
 LIBFT_DIR   = $(LIB_DIR)/libft
 PRINTF_DIR  = $(LIB_DIR)/ft_printf
@@ -32,18 +33,26 @@ SRC         = main.c \
 			  src/utils/ft_atol.c \
 			  src/ops/swap.c
 
-OBJ         = $(SRC:.c=.o)
+OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 CC          = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS      = -Wall -Wextra -Werror -I.
 
-all: $(LIBFT) $(PRINTF) $(GNL) $(NAME)
+all: $(OBJ_DIR) $(LIBFT) $(PRINTF) $(GNL) $(NAME)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/src
+	mkdir -p $(OBJ_DIR)/src/stack
+	mkdir -p $(OBJ_DIR)/src/parsing
+	mkdir -p $(OBJ_DIR)/src/utils
+	mkdir -p $(OBJ_DIR)/src/ops
+
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) $(GNL) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -55,7 +64,7 @@ $(GNL):
 	make -C $(GNL_DIR)
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(PRINTF_DIR)
 	make clean -C $(GNL_DIR)
@@ -69,4 +78,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
