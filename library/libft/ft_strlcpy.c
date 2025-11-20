@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/12 18:08:26 by zcadinot          #+#    #+#             */
+/*   Updated: 2025/10/22 10:43:26 by zcadinot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	if (size == 0)
+	{
+		while (src[i] != '\0')
+			i++;
+		return (i);
+	}
+	while (i < size - 1 && src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	i = 0;
+	while (src[i] != '\0')
+		i++;
+	return (i);
+}
+
+/*
+#include <unistd.h>
+
+int	main(void)
+{
+	char	dest[5];
+	int		i;
+
+	i = 0;
+	ft_strlcpy(dest, "Bonjour", 5);
+	while (dest[i] != '\0')
+	{
+		write(1, &dest[i], 1);
+		i++;
+	}
+	return (0);
+}
+*/
