@@ -6,7 +6,7 @@
 #    By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 22:02:03 by zcadinot          #+#    #+#              #
-#    Updated: 2025/11/20 22:14:03 by zcadinot         ###   ########.fr        #
+#    Updated: 2025/11/20 22:32:36 by zcadinot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRC         = main.c \
 			  src/stack/node_utils1.c \
 			  src/stack/node_utils2.c \
 			  src/parsing/parse_arg.c \
+			  src/parsing/parse_utils.c \
+			  src/utils/ft_atol.c \
 			  src/ops/swap.c
 
 OBJ         = $(SRC:.c=.o)
