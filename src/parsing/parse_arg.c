@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 22:03:58 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 22:41:46 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/20 23:17:28 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	parse_args(char **argv)
 	long	i;
 	long	len;
 
+	if (!check_arg(argv))
+		return ;
 	len = count_param(argv);
 	tab = create_valtab(argv);
 	i = 0;
@@ -56,3 +58,45 @@ long	*create_valtab(char **argv)
 	return (tab);
 }
 
+int check_custom(char **argv, int (*test)(char *))
+{
+    int i = 1;
+
+    while (argv[i])
+    {
+        if (!test(argv[i]))
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+int is_valid_number(char *s)
+{
+    int i;
+
+    i = 0;
+    if (s[i] == '+' || s[i] == '-')
+        i++;
+    if (!s[i])
+        return (0);
+    if (s[i] == '+' || s[i] == '-')
+        return (0);
+    while (s[i])
+    {
+        if (s[i] < '0' || s[i] > '9')
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+int	check_arg(char **argv)
+{
+	if (!check_custom(argv, is_valid_number))
+	{
+		ft_printf("Error/n");
+		return (0);
+	}
+	return (1);
+}
