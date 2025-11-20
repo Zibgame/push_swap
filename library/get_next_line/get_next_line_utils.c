@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 01:58:28 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 10:38:00 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/18 11:42:14 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ char	*cft_strjoin(char *left_str, char *buff)
 	}
 	if (!left_str || !buff)
 		return (NULL);
-	str = malloc(
-			sizeof(char) * (cft_strlen(left_str) + cft_strlen(buff) + 1));
+	str = malloc(sizeof(char) * (cft_strlen(left_str)
+		+ cft_strlen(buff) + 1));
 	if (str == NULL)
 		return (NULL);
 	i = -1;

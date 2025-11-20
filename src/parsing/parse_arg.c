@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
+/*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/20 11:08:46 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 22:14:24 by zcadinot         ###   ########.fr       */
+/*   Created: 2025/11/20 22:03:58 by zcadinot          #+#    #+#             */
+/*   Updated: 2025/11/20 22:04:29 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap.h" 
 
-int	main(int argc, char *argv[])
+void	parse_args(char **argv)
 {
-	if (argc < 2)
-		return (0);
-	parse_args(argv);
-	return (0);
+	char	**args;
+	int		i;
+
+	args = ft_split(argv[1], ' ');
+	i = 0;
+	while (args[i])
+	{
+		ft_printf("%s\n", args[i]);
+		i++;
+	}
 }
