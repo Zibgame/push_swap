@@ -6,7 +6,7 @@
 #    By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 22:02:03 by zcadinot          #+#    #+#              #
-#    Updated: 2025/11/21 13:26:33 by zcadinot         ###   ########.fr        #
+#    Updated: 2025/11/21 14:41:10 by zcadinot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRC         = main.c \
 			  src/stack/init_stack.c \
 			  src/parsing/parse_arg.c \
 			  src/parsing/parse_utils.c \
+			  src/stack/is_sorted.c \
 			  src/utils/ft_atol.c \
+			  src/utils/free_stack.c \
 			  src/ops/swap.c
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)

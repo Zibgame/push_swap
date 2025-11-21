@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:02:26 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 14:30:27 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:41:22 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,14 @@ t_node	*init_stack_a(long *tab, long len);
 t_node	*init_stack_b(void);
 t_stack	init_stack(long *tab, long len);
 void	print_stacks(t_stack *s);
+
+/**< === Sort Utils === >**/
+
+int		is_sorted(t_node *stack);
+
+/**< === Sort Utils === >**/
+
+void	free_stack(t_node **stack);
+void	free_all(t_stack *s);
 
 #endif
