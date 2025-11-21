@@ -6,14 +6,14 @@
 #    By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 22:02:03 by zcadinot          #+#    #+#              #
-#    Updated: 2025/11/21 16:10:36 by zcadinot         ###   ########.fr        #
+#    Updated: 2025/11/21 16:33:04 by zcadinot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        = push_swap
 
 SRC_DIR     = src
-OBJ_DIR     = obj
+OBJ_DIR = obj
 INC_DIR     = includes
 LIB_DIR     = library
 
@@ -34,9 +34,13 @@ SRC         = main.c \
 			  src/stack/is_sorted.c \
 			  src/utils/ft_atol.c \
 			  src/utils/free_stack.c \
+			  src/utils/index.c \
 			  src/ops/push.c \
 			  src/ops/rotate.c \
 			  src/ops/rrotate.c \
+			  src/algorithm/radix_sort.c \
+			  src/algorithm/sort_five.c \
+			  src/algorithm/sort_three.c \
 			  src/ops/swap.c
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)
@@ -53,6 +57,8 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)/src/parsing
 	mkdir -p $(OBJ_DIR)/src/utils
 	mkdir -p $(OBJ_DIR)/src/ops
+	mkdir -p $(OBJ_DIR)/src/algorithm
+
 
 $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

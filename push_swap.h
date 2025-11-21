@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:02:26 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 16:11:35 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:33:22 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	print_stacks(t_stack *s);
 /**< === Sort Utils === >**/
 
 int		is_sorted(t_node *stack);
+void	assign_index(t_node *a);
 
 /**< === Sort Utils === >**/
 
@@ -107,5 +108,13 @@ void	rr(t_stack *s);
 void	rra(t_stack *s);
 void	rrb(t_stack *s);
 void	rrr(t_stack *s);
+
+/* ============================
+**       ALGORITHMS
+** ============================ */
+
+void	sort_three(t_stack *s);
+void	sort_five(t_stack *s);
+void	radix_sort(t_stack *s);
 
 #endif

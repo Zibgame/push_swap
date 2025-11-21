@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 22:03:58 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 14:54:08 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:34:26 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ t_stack	*parse_args(char **argv)
 		return (NULL);
 	}
 	*stack = init_stack(tab, len);
+	assign_index(stack->a);
 	if (is_sorted(stack->a))
 	{
 		free_all(stack);
 		free(tab);
 		exit(EXIT_SUCCESS);
 	}
-	print_stacks(stack);
 	free(tab);
 	return (stack);
 }
