@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 21:40:51 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 22:00:29 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:20:56 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,25 @@ long    size_stack(t_node *stack)
         tmp = tmp->next;
     }
     return (i);
+}
+
+void    print_stacks(t_stack *s)
+{
+    t_node  *a = s->a;
+    t_node  *b = s->b;
+
+    ft_printf("Stack A:\n");
+    while (a)
+    {
+        ft_printf("%d\n", a->value);
+        a = a->next;
+    }
+    ft_printf("Stack B:\n");
+    while (b)
+    {
+        ft_printf("%d\n", b->value);
+        b = b->next;
+    }
+    ft_printf("Size A: %d\n", s->size_a);
+    ft_printf("Size B: %d\n", s->size_b);
 }

@@ -6,7 +6,7 @@
 #    By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 22:02:03 by zcadinot          #+#    #+#              #
-#    Updated: 2025/11/20 23:57:26 by zcadinot         ###   ########.fr        #
+#    Updated: 2025/11/21 13:26:33 by zcadinot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ GNL         = $(GNL_DIR)/get_next_line.a
 SRC         = main.c \
 			  src/stack/node_utils1.c \
 			  src/stack/node_utils2.c \
+			  src/stack/init_stack.c \
 			  src/parsing/parse_arg.c \
 			  src/parsing/parse_utils.c \
 			  src/utils/ft_atol.c \

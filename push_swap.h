@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:02:26 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 23:49:33 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:30:27 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # include "library/get_next_line/get_next_line.h"
 # include "library/ft_printf/ft_printf.h"
 
+/**
+ * @struct s_node
+ * @brief Represente un element d’une pile chainer.
+ *
+ */
 typedef struct s_node
 {
 	int				value;
@@ -28,30 +33,45 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-typedef struct s_stacknode
+/**
+ * @struct s_stacknode
+ * @brief Gere l'etat global des piles utiliser par push_swap.
+ *
+ */
+typedef struct s_stack
 {
 	t_node	*a;
 	t_node	*b;
 	int		size_a;
 	int		size_b;
-}	t_stackt;
+}	t_stack;
 
-void	parse_args(char **argv);
+/**< === Parsing & Validation === >**/
+
+t_stack	*parse_args(char **argv);
 long	count_param(char **argv);
 long	*create_valtab(char **argv);
-long	count_param(char **argv);
+
 int		is_valid_number(char *s);
-/* int		check_custom(char **argv, int (*test)(char *)); */
 int		check_arg(char **argv);
 int		has_duplicate(char **argv);
 
-t_node	*pop_back(t_node **stack);
-t_node	*pop_front(t_node **stack);
+long	ft_atol(char *str);
+
+/**< === Stack Utils === >**/
+
 t_node	*new_node(int value);
 void	node_add_back(t_node **stack, t_node *new);
-void	node_add_front(t_node **lst, t_node *new);
+void	node_add_front(t_node **stack, t_node *new);
+
+t_node	*pop_back(t_node **stack);
+t_node	*pop_front(t_node **stack);
+
 int		stack_size(t_node *stack);
 
-long	ft_atol(char *str);
+t_node	*init_stack_a(long *tab, long len);
+t_node	*init_stack_b(void);
+t_stack	init_stack(long *tab, long len);
+void	print_stacks(t_stack *s);
 
 #endif

@@ -6,32 +6,31 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 22:03:58 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 23:50:00 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:32:11 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h" 
 
-void	parse_args(char **argv)
+t_stack *parse_args(char **argv)
 {
-	long	*tab;
-	long	i;
-	long	len;
+    long    *tab;
+    long    len;
+    t_stack *stack;
 
-	if (!check_arg(argv))
-		return ;
-	len = count_param(argv);
-	tab = create_valtab(argv);
-	if (!tab)
-		return ;
-	i = 0;
-	while (i < len)
-	{
-		ft_putnbr_fd(tab[i], 1);
-		ft_putchar_fd(' ', 1);
-		i++;
-	}
-	free(tab);
+    if (!check_arg(argv))
+        return (NULL);
+
+    len = count_param(argv);
+    tab = create_valtab(argv);
+    if (!tab)
+        return (NULL);
+    stack = malloc(sizeof(t_stack));
+    if (!stack)
+        return (NULL);
+    *stack = init_stack(tab, len);
+    print_stacks(stack);
+    return (stack);
 }
 
 /**
@@ -78,7 +77,7 @@ int	check_arg(char **argv)
 		v = ft_atol(argv[i]);
 		if (v < INT_MIN || v > INT_MAX)
 		{
-			ft_printf("Error\n : Number out TO BIG found '%s'\n", argv[i]);
+			ft_printf("Error\n : Number TO BIG found '%s'\n", argv[i]);
 			return (0);
 		}
 		i++;
