@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:02:26 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 15:17:32 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:11:35 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,27 @@ void	free_all(t_stack *s);
 
 /**< === Operations === >**/
 
+/* === Operations : swap === */
+
 void	sa(t_stack *s);
 void	sb(t_stack *s);
 void	ss(t_stack *s);
 
+/* === Operations : push === */
+
 void	pa(t_stack *s);
 void	pb(t_stack *s);
+
+/* === Operations : rotate === */
+
+void	ra(t_stack *s);
+void	rb(t_stack *s);
+void	rr(t_stack *s);
+
+/* === Operations : reverse rotate === */
+
+void	rra(t_stack *s);
+void	rrb(t_stack *s);
+void	rrr(t_stack *s);
 
 #endif
