@@ -6,31 +6,40 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 22:03:58 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 14:32:11 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:54:08 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h" 
 
-t_stack *parse_args(char **argv)
+t_stack	*parse_args(char **argv)
 {
-    long    *tab;
-    long    len;
-    t_stack *stack;
+	long	*tab;
+	long	len;
+	t_stack	*stack;
 
-    if (!check_arg(argv))
-        return (NULL);
-
-    len = count_param(argv);
-    tab = create_valtab(argv);
-    if (!tab)
-        return (NULL);
-    stack = malloc(sizeof(t_stack));
-    if (!stack)
-        return (NULL);
-    *stack = init_stack(tab, len);
-    print_stacks(stack);
-    return (stack);
+	if (!check_arg(argv))
+		return (NULL);
+	len = count_param(argv);
+	tab = create_valtab(argv);
+	if (!tab)
+		return (NULL);
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+	{
+		free(tab);
+		return (NULL);
+	}
+	*stack = init_stack(tab, len);
+	if (is_sorted(stack->a))
+	{
+		free_all(stack);
+		free(tab);
+		exit(EXIT_SUCCESS);
+	}
+	print_stacks(stack);
+	free(tab);
+	return (stack);
 }
 
 /**

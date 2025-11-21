@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:08:46 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 22:14:24 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:46:08 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 int	main(int argc, char *argv[])
 {
+	t_stack	*stack;
+
 	if (argc < 2)
 		return (0);
-	parse_args(argv);
+	stack = parse_args(argv);
+	free_all(stack);
 	return (0);
 }
