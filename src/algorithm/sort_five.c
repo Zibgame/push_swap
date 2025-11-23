@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:20:14 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 16:45:24 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/24 00:40:25 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void sort_five(t_stack *s)
     {
         pos = find_min_pos(s->a);
 
-        /* amener le min en tête */
         if (pos <= s->size_a / 2)
             while (pos-- > 0)
                 ra(s);

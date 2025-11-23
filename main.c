@@ -6,13 +6,13 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:08:46 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 16:47:52 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:51:13 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void sort_stack(t_stack *s)
+static void	sort_stack(t_stack *s)
 {
 	if (is_sorted(s->a))
 		return ;
@@ -33,9 +33,11 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 	stack = parse_args(argv);
+	print_stacks(stack);
 	if (!stack)
 		return (1);
 	sort_stack(stack);
+	print_stacks(stack);
 	free_all(stack);
 	return (0);
 }
