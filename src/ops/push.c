@@ -12,13 +12,12 @@
 
 #include "push_swap.h"
 
-
 /**
  * @brief Vas push le node From dans la pile to
  * @param from
  * @param to
 **/
-static void push_node(t_node **from, t_node **to)
+static void	push_node(t_node **from, t_node **to)
 {
 	t_node	*tmp;
 

@@ -19,18 +19,17 @@
  *
  * @return t_node
  */
-t_node  *pop_front(t_node **stack)
+t_node	*pop_front(t_node **stack)
 {
-    t_node *first;
+	t_node	*first;
 
-    if (!stack || !*stack)
-        return (NULL);
-    first = *stack;
-    *stack = first->next;
-    first->next = NULL;
-    return (first);
+	if (!stack || !*stack)
+		return (NULL);
+	first = *stack;
+	*stack = first->next;
+	first->next = NULL;
+	return (first);
 }
-
 
 /**
  * @brief  enleve le dernier noeud de la pile
@@ -38,30 +37,28 @@ t_node  *pop_front(t_node **stack)
  * @param stack
  *
  */
-t_node  *pop_back(t_node **stack)
+t_node	*pop_back(t_node **stack)
 {
-    t_node *tmp;
-    t_node *prev;
+	t_node	*tmp;
+	t_node	*prev;
 
-
-    if (!stack || !*stack)
-        return (NULL);
-    if (!(*stack)->next)
-    {
-        tmp = *stack;
-        *stack = NULL;
-        return (tmp);
-    }
-    tmp = *stack;
-    while (tmp->next)
-    {
-        prev = tmp;
-        tmp = tmp->next;
-    }
-    prev->next = NULL;
-    return (tmp);
+	if (!stack || !*stack)
+		return (NULL);
+	if (!(*stack)->next)
+	{
+		tmp = *stack;
+		*stack = NULL;
+		return (tmp);
+	}
+	tmp = *stack;
+	while (tmp->next)
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	prev->next = NULL;
+	return (tmp);
 }
-
 
 /**
  * @brief donne la size de la stack
@@ -69,38 +66,40 @@ t_node  *pop_back(t_node **stack)
  * @param stack
  *
  */
-long    size_stack(t_node *stack)
+long	size_stack(t_node *stack)
 {
-    long    i;
-    t_node  *tmp;
+	long	i;
+	t_node	*tmp;
 
-    i = 0;
-    tmp = stack;
-    while(tmp)
-    {
-        i++;
-        tmp = tmp->next;
-    }
-    return (i);
+	i = 0;
+	tmp = stack;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
 }
 
-void    print_stacks(t_stack *s)
+void	print_stacks(t_stack *s)
 {
-    t_node  *a = s->a;
-    t_node  *b = s->b;
+	t_node	*a;
+	t_node	*b;
 
-    ft_printf("Stack A:\n");
-    while (a)
-    {
-        ft_printf("%d\n", a->value);
-        a = a->next;
-    }
-    ft_printf("Stack B:\n");
-    while (b)
-    {
-        ft_printf("%d\n", b->value);
-        b = b->next;
-    }
-    ft_printf("Size A: %d\n", s->size_a);
-    ft_printf("Size B: %d\n", s->size_b);
+	a = s->a;
+	b = s->b;
+	ft_printf("Stack A:\n");
+	while (a)
+	{
+		ft_printf("%d\n", a->value);
+		a = a->next;
+	}
+	ft_printf("Stack B:\n");
+	while (b)
+	{
+		ft_printf("%d\n", b->value);
+		b = b->next;
+	}
+	ft_printf("Size A: %d\n", s->size_a);
+	ft_printf("Size B: %d\n", s->size_b);
 }

@@ -10,64 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-#include <stdlib.h>
-
-static int	count_words(const char *s, char c)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i])
-			count++;
-		while (s[i] && s[i] != c)
-			i++;
-	}
-	return (count);
-}
-
-static char	*word_dup(const char *s, char c)
-{
-	int		len;
-	char	*word;
-
-	len = 0;
-	while (s[len] && s[len] != c)
-		len++;
-	word = malloc(len + 1);
-	if (!word)
-		return (NULL);
-	word[len] = 0;
-	while (len--)
-		word[len] = s[len];
-	return (word);
-}
-
-static void	*free_all(char **tab, int i)
+static void	free_stp(char **tab, int i)
 {
 	while (i--)
 		free(tab[i]);
 	free(tab);
-	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+static int	count_word(const char *s, char c)
 {
-	int		i;
-	char	**res;
+	int	count;
 
-	if (!s)
+	count = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s)
+		{
+			count++;
+			while (*s && *s != c)
+				s++;
+		}
+	}
+	return (count);
+}
+
+static char	*word_dup(char const *s, char c)
+{
+	size_t	i;
+	size_t	len;
+	char	*word;
+
+	len = 0;
+	i = 0;
+	while (s[len] && s[len] != c)
+		len++;
+	word = (char *)malloc(sizeof(char) * (len + 1));
+	if (!word)
 		return (NULL);
-	res = malloc(sizeof(char *) * (count_words(s, c) + 1));
-	if (!res)
-		return (NULL);
+	while (i < len)
+	{
+		word[i] = s[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+static int	full_tab(char **tab, char const *s, char c)
+{
+	int	i;
+
 	i = 0;
 	while (*s)
 	{
@@ -75,24 +71,33 @@ char	**ft_split(char const *s, char c)
 			s++;
 		if (*s)
 		{
-			res[i] = word_dup(s, c);
-			if (!res[i++])
-				return (free_all(res, i - 1));
+			tab[i] = word_dup(s, c);
+			if (!tab[i])
+			{
+				free_stp(tab, i);
+				return (0);
+			}
+			i++;
 			while (*s && *s != c)
 				s++;
 		}
 	}
-	res[i] = NULL;
-	return (res);
+	tab[i] = NULL;
+	return (1);
 }
 
-// int main(void)
-// {
-//     char **tab = ft_split("a-b-c", '-');
-//     for (int i = 0; tab[i]; i++)
-//         printf("%s\n", tab[i]);
-//     for (int i = 0; tab[i]; i++)
-//         free(tab[i]);
-//     free(tab);
-//     return (0);
-// }
+char	**ft_split(char const *s, char c)
+{
+	int		count;
+	char	**tab;
+
+	if (!s)
+		return (NULL);
+	count = count_word(s, c);
+	tab = (char **)malloc(sizeof(char *) * (count + 1));
+	if (!tab)
+		return (NULL);
+	if (!full_tab(tab, s, c))
+		return (NULL);
+	return (tab);
+}

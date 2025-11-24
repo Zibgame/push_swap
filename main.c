@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:08:46 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 16:51:13 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/24 11:27:03 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static void	sort_stack(t_stack *s)
 	else if (s->size_a <= 5)
 		sort_five(s);
 	else
-		radix_sort(s);
+	{
+		ft_chunk_b(s);
+		ft_sort_b_to_a(s);
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -33,11 +36,9 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 	stack = parse_args(argv);
-	print_stacks(stack);
 	if (!stack)
 		return (1);
 	sort_stack(stack);
-	print_stacks(stack);
 	free_all(stack);
 	return (0);
 }

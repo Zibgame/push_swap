@@ -6,7 +6,7 @@
 #    By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 22:02:03 by zcadinot          #+#    #+#              #
-#    Updated: 2025/11/21 16:33:04 by zcadinot         ###   ########.fr        #
+#    Updated: 2025/11/24 11:27:57 by zcadinot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ SRC         = main.c \
 			  src/ops/push.c \
 			  src/ops/rotate.c \
 			  src/ops/rrotate.c \
-			  src/algorithm/radix_sort.c \
 			  src/algorithm/sort_five.c \
 			  src/algorithm/sort_three.c \
+			  src/algorithm/chunck_sort.c \
 			  src/ops/swap.c
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)

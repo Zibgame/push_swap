@@ -6,20 +6,36 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 22:16:12 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/20 22:21:18 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/24 13:12:06 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h" 
+#include "push_swap.h"
 
 long	count_param(char **argv)
 {
-	long	i;
+	char	**split;
+	long	count;
+	int		i;
+	int		k;
 
-	i = 0;
+	i = 1;
+	count = 0;
 	while (argv[i])
+	{
+		split = ft_split(argv[i], ' ');
+		if (!split)
+			return (0);
+		k = 0;
+		while (split[k])
+		{
+			count++;
+			k++;
+		}
+		free_split(split);
 		i++;
-	return (i - 1);
+	}
+	return (count);
 }
 
 int	is_valid_number(char *s)
@@ -27,14 +43,9 @@ int	is_valid_number(char *s)
 	int	i;
 
 	i = 0;
-	if (!s || !s[0])
-		return (0);
-	if ((s[0] == '+' || s[0] == '-')
-		&& (s[1] == '+' || s[1] == '-'))
-		return (0);
-	if (s[i] == '+' || s[i] == '-')
+	if (s[0] == '+' || s[0] == '-')
 		i++;
-	if (!s[i])
+	if (i == 1 && s[1] == '\0')
 		return (0);
 	while (s[i])
 	{
@@ -45,22 +56,18 @@ int	is_valid_number(char *s)
 	return (1);
 }
 
-int	has_duplicate(char **argv)
+int	has_duplicate(long *tab, long len)
 {
-	int		i;
-	int		j;
-	long	a;
-	long	b;
+	long	i;
+	long	j;
 
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (i < len)
 	{
-		a = ft_atol(argv[i]);
 		j = i + 1;
-		while (argv[j])
+		while (j < len)
 		{
-			b = ft_atol(argv[j]);
-			if (a == b)
+			if (tab[i] == tab[j])
 				return (1);
 			j++;
 		}

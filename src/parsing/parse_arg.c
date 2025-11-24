@@ -6,11 +6,45 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 22:03:58 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 16:34:26 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/24 13:13:36 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h" 
+
+static void	check_duplicates_and_exit(long *tab, long len)
+{
+	if (has_duplicate(tab, len))
+	{
+		free(tab);
+		exit(error());
+	}
+}
+
+static t_stack	*alloc_stack_or_exit(long *tab, long len)
+{
+	t_stack	*stack;
+
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+	{
+		free(tab);
+		exit(error());
+	}
+	*stack = init_stack(tab, len);
+	assign_index(stack->a);
+	return (stack);
+}
+
+static void	exit_if_sorted(t_stack *stack, long *tab)
+{
+	if (is_sorted(stack->a))
+	{
+		free_all(stack);
+		free(tab);
+		exit(0);
+	}
+}
 
 t_stack	*parse_args(char **argv)
 {
@@ -19,95 +53,41 @@ t_stack	*parse_args(char **argv)
 	t_stack	*stack;
 
 	if (!check_arg(argv))
-		return (NULL);
+		exit(error());
 	len = count_param(argv);
 	tab = create_valtab(argv);
 	if (!tab)
-		return (NULL);
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-	{
-		free(tab);
-		return (NULL);
-	}
-	*stack = init_stack(tab, len);
-	assign_index(stack->a);
-	if (is_sorted(stack->a))
-	{
-		free_all(stack);
-		free(tab);
-		exit(EXIT_SUCCESS);
-	}
+		exit(error());
+	check_duplicates_and_exit(tab, len);
+	stack = alloc_stack_or_exit(tab, len);
+	exit_if_sorted(stack, tab);
 	free(tab);
 	return (stack);
 }
 
-/**
- * @brief cree un tableau de long via argv
- *
- * @return 
- */
-
 long	*create_valtab(char **argv)
 {
-	long	i;
-	long	j;
-	long	len;
+	char	**split;
 	long	*tab;
+	long	j;
+	int		i;
+	int		k;
 
-	len = count_param(argv);
-	tab = calloc(len, sizeof(long));
+	tab = malloc(sizeof(long) * count_param(argv));
 	if (!tab)
 		return (NULL);
-	i = 1;
 	j = 0;
+	i = 1;
 	while (argv[i])
 	{
-		tab[j] = ft_atol(argv[i]);
+		split = ft_split(argv[i], ' ');
+		if (!split)
+			return (free(tab), NULL);
+		k = 0;
+		while (split[k])
+			tab[j++] = ft_atol(split[k++]);
+		free_split(split);
 		i++;
-		j++;
 	}
 	return (tab);
 }
-
-int	check_arg(char **argv)
-{
-	int		i;
-	long	v;
-
-	i = 1;
-	while (argv[i])
-	{
-		if (!is_valid_number(argv[i]))
-		{
-			ft_printf("Error\n : Invalid number '%s'\n", argv[i]);
-			return (0);
-		}
-		v = ft_atol(argv[i]);
-		if (v < INT_MIN || v > INT_MAX)
-		{
-			ft_printf("Error\n : Number TO BIG found '%s'\n", argv[i]);
-			return (0);
-		}
-		i++;
-	}
-	if (has_duplicate(argv))
-	{
-		ft_printf("Error\n : Duplicate numbers found\n");
-		return (0);
-	}
-	return (1);
-}
-
-/* int check_custom(char **argv, int (*test)(char *)) */
-/* { */
-/*     int i = 1; */
-
-/*     while (argv[i]) */
-/*     { */
-/*         if (!test(argv[i])) */
-/*             return (0); */
-/*         i++; */
-/*     } */
-/*     return (1); */
-/* } */

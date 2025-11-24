@@ -12,44 +12,46 @@
 
 #include "push_swap.h"
 
-static int find_min_pos(t_node *a)
+static int	find_min_pos(t_node *a)
 {
-    int pos = 0;
-    int min = a->index;
-    int i = 0;
-    t_node *tmp = a;
+	int		pos;
+	int		min;
+	int		i;
+	t_node	*tmp;
 
-    while (tmp)
-    {
-        if (tmp->index < min)
-        {
-            min = tmp->index;
-            pos = i;
-        }
-        tmp = tmp->next;
-        i++;
-    }
-    return pos;
+	pos = 0;
+	min = a->index;
+	i = 0;
+	tmp = a;
+	while (tmp)
+	{
+		if (tmp->index < min)
+		{
+			min = tmp->index;
+			pos = i;
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	return (pos);
 }
 
-void sort_five(t_stack *s)
+void	sort_five(t_stack *s)
 {
-    int pos;
+	int	pos;
 
-    while (s->size_a > 3)
-    {
-        pos = find_min_pos(s->a);
-
-        if (pos <= s->size_a / 2)
-            while (pos-- > 0)
-                ra(s);
-        else
-            while (pos++ < s->size_a)
-                rra(s);
-
-        pb(s);
-    }
-    sort_three(s);
-    while (s->size_b > 0)
-        pa(s);
+	while (s->size_a > 3)
+	{
+		pos = find_min_pos(s->a);
+		if (pos <= s->size_a / 2)
+			while (pos-- > 0)
+				ra(s);
+		else
+			while (pos++ < s->size_a)
+				rra(s);
+		pb(s);
+	}
+	sort_three(s);
+	while (s->size_b > 0)
+		pa(s);
 }

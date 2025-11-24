@@ -14,10 +14,13 @@
 
 void	sort_three(t_stack *s)
 {
-	int a = s->a->value;
-	int b = s->a->next->value;
-	int c = s->a->next->next->value;
+	int	a;
+	int	b;
+	int	c;
 
+	a = s->a->value;
+	b = s->a->next->value;
+	c = s->a->next->next->value;
 	if (a < b && b < c)
 		return ;
 	if (a > b && a < c)

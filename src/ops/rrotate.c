@@ -12,48 +12,46 @@
 
 #include "push_swap.h"
 
-static void reverse_rotate_one(t_node **stack)
+static void	reverse_rotate_one(t_node **stack)
 {
-    t_node *last;
-    t_node *prev;
+	t_node	*last;
+	t_node	*prev;
 
-    if (!stack || !*stack || !(*stack)->next)
-        return ;
-
-    prev = NULL;
-    last = *stack;
-
-    while (last->next)
-    {
-        prev = last;
-        last = last->next;
-    }
-    prev->next = NULL;
-    last->next = *stack;
-    *stack = last;
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	prev = NULL;
+	last = *stack;
+	while (last->next)
+	{
+		prev = last;
+		last = last->next;
+	}
+	prev->next = NULL;
+	last->next = *stack;
+	*stack = last;
 }
 
-void    rra(t_stack *s)
+void	rra(t_stack *s)
 {
-    if (!s)
-        return ;
-    reverse_rotate_one(&s->a);
-    ft_printf("rra\n");
+	if (!s)
+		return ;
+	reverse_rotate_one(&s->a);
+	ft_printf("rra\n");
 }
 
-void    rrb(t_stack *s)
+void	rrb(t_stack *s)
 {
-    if (!s)
-        return ;
-    reverse_rotate_one(&s->b);
-    ft_printf("rrb\n");
+	if (!s)
+		return ;
+	reverse_rotate_one(&s->b);
+	ft_printf("rrb\n");
 }
 
-void    rrr(t_stack *s)
+void	rrr(t_stack *s)
 {
-    if (!s)
-        return ;
-    reverse_rotate_one(&s->a);
-    reverse_rotate_one(&s->b);
-    ft_printf("rrr\n");
+	if (!s)
+		return ;
+	reverse_rotate_one(&s->a);
+	reverse_rotate_one(&s->b);
+	ft_printf("rrr\n");
 }

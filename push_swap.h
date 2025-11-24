@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42lehavre.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:02:26 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/21 16:33:22 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/24 13:14:31 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ long	*create_valtab(char **argv);
 
 int		is_valid_number(char *s);
 int		check_arg(char **argv);
-int		has_duplicate(char **argv);
+int		has_duplicate(long *tab, long len);
 
 long	ft_atol(char *str);
+int		error(void);
 
 /**< === Stack Utils === >**/
 
@@ -83,6 +84,8 @@ void	assign_index(t_node *a);
 
 void	free_stack(t_stack *s);
 void	free_all(t_stack *s);
+void	free_split(char **split);
+int		check_split(char **split);
 
 /**< === Operations === >**/
 
@@ -116,5 +119,7 @@ void	rrr(t_stack *s);
 void	sort_three(t_stack *s);
 void	sort_five(t_stack *s);
 void	radix_sort(t_stack *s);
+void	ft_chunk_b(t_stack *stackt);
+void	ft_sort_b_to_a(t_stack *stackt);
 
 #endif

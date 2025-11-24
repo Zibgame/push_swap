@@ -30,7 +30,11 @@ long	ft_atol(char *s)
 	{
 		digit = *s - '0';
 		if (result > (LONG_MAX - digit) / 10)
-			return (sign == 1 ? LONG_MAX : LONG_MIN);
+		{
+			if (sign == 1)
+				return (LONG_MAX);
+			return (LONG_MIN);
+		}
 		result = result * 10 + digit;
 		s++;
 	}
