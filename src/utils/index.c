@@ -6,7 +6,7 @@
 /*   By: zcadinot <zcadinot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:33:39 by zcadinot          #+#    #+#             */
-/*   Updated: 2025/11/24 13:12:36 by zcadinot         ###   ########.fr       */
+/*   Updated: 2025/11/25 11:03:18 by zcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,6 @@ void	assign_index(t_node *a)
 		tmp1->index = idx;
 		tmp1 = tmp1->next;
 	}
-}
-
-int	error(void)
-{
-	write(2, "Error\n", 6);
-	return (0);
 }
 
 int	check_split(char **split)
